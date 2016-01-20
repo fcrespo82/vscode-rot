@@ -1,0 +1,47 @@
+{
+	"name": "rot",
+	"displayName": "ROT",
+	"description": "Apply ROT cipher to selected text",
+	"version": "0.0.1",
+	"publisher": "fcrespo82",
+	"engines": {
+		"vscode": "^0.10.1"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.rot.13",
+        "onCommand:extension.rot.47"
+	],
+	"main": "./out/src/extension",
+	"contributes": {
+		"commands": [{
+			"command": "extension.rot.13",
+			"title": "ROT 13"
+		},{
+			"command": "extension.rot.47",
+			"title": "ROT 47"
+		}],
+		"keybindings": [{
+			"command": "extension.rot.13",
+			"key": "ctrl+shift+r 1",
+			"mac": "cmd+shift+r 1",
+			"when": "editorTextFocus"
+		}, {
+			"command": "extension.rot.47",
+			"key": "ctrl+shift+r 4",
+			"mac": "cmd+shift+r 4",
+			"when": "editorTextFocus"
+		}]
+	},
+	"scripts": {
+		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+		"compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
+	},
+	"devDependencies": {
+		"typescript": "^1.6.2",
+		"vscode": "0.10.x"
+	}
+}
+
