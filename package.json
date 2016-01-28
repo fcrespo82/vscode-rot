@@ -11,17 +11,29 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.rot.13",
-        "onCommand:extension.rot.47"
+		"*"
 	],
 	"main": "./out/src/extension",
 	"contributes": {
+        "configuration": {
+            "title": "Config for ROT extension",
+            "properties": {
+                "rot.showStatusBarButton" : {
+                    "title": "Show button on status bar",
+                    "type": "boolean",
+                    "description": "Show button on status bar"
+                }
+            }
+        },
 		"commands": [{
 			"command": "extension.rot.13",
 			"title": "ROT 13"
 		},{
 			"command": "extension.rot.47",
 			"title": "ROT 47"
+		},{
+			"command": "extension.chooseCommand",
+			"title": "Choose status bar command"
 		}],
 		"keybindings": [{
 			"command": "extension.rot.13",

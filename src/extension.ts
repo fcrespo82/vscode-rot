@@ -2,8 +2,16 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
+var statusBarItem;
 export function activate(context: vscode.ExtensionContext) {
 
+    var a = vscode.workspace.getConfiguration('rot')
+    console.log(a)
+    statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right);
+    statusBarItem.command = "extension.rot.13";
+    statusBarItem.text = "ROT 13";
+    statusBarItem.show();
+    
     var rot13Command = vscode.commands.registerCommand('extension.rot.13', () => {
         commandFunc(rot13);
     });
@@ -13,6 +21,22 @@ export function activate(context: vscode.ExtensionContext) {
         commandFunc(rot47);
     });
     context.subscriptions.push(rot47Command);
+       
+    var chooseCommand = vscode.commands.registerCommand('extension.chooseCommand', () => {
+        var answer = vscode.window.showQuickPick(["ROT 13", "ROT 47"]);
+        
+        answer.then(function(value) {
+            if (value == "ROT 13") {
+                statusBarItem.command = "extension.rot.13";
+                statusBarItem.text = "ROT 13";
+            } else if (value == "ROT 47") {
+                statusBarItem.command = "extension.rot.47";
+                statusBarItem.text = "ROT 47";
+            }
+        });
+        
+    });
+    context.subscriptions.push(chooseCommand);
 }
 
 export function deactivate() {
