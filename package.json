@@ -1,59 +1,68 @@
 {
-	"name": "rot",
-	"displayName": "ROT",
-	"description": "Apply ROT cipher to selected text",
-	"version": "0.0.1",
-	"publisher": "fcrespo82",
-	"engines": {
-		"vscode": "^0.10.1"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"*"
-	],
-	"main": "./out/src/extension",
-	"contributes": {
+    "name": "rot",
+    "displayName": "ROT",
+    "description": "Apply ROT cipher to selected text",
+    "version": "0.0.1",
+    "publisher": "fcrespo82",
+    "engines": {
+        "vscode": "^0.10.1"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./out/src/extension",
+    "contributes": {
         "configuration": {
-            "title": "Config for ROT extension",
+            "title": "Configuration for ROT extension",
             "properties": {
-                "rot.showStatusBarButton" : {
+                "rot.showStatusBarButton": {
                     "title": "Show button on status bar",
+                    "description": "Show button on status bar",
                     "type": "boolean",
-                    "description": "Show button on status bar"
+                    "default": false
+                },
+                "rot.statusBarCommand": {
+                    "title": "Default command for status bar",
+                    "description": "Default command for status bar",
+                    "type": "string",
+                    "enum": [
+                        "rot.13",
+                        "rot.47"
+                    ],
+                    "default": "rot.13"
                 }
             }
         },
-		"commands": [{
-			"command": "extension.rot.13",
-			"title": "ROT 13"
-		},{
-			"command": "extension.rot.47",
-			"title": "ROT 47"
-		},{
-			"command": "extension.chooseCommand",
-			"title": "Choose status bar command"
-		}],
-		"keybindings": [{
-			"command": "extension.rot.13",
-			"key": "ctrl+shift+r 1",
-			"mac": "cmd+shift+r 1",
-			"when": "editorTextFocus"
-		}, {
-			"command": "extension.rot.47",
-			"key": "ctrl+shift+r 4",
-			"mac": "cmd+shift+r 4",
-			"when": "editorTextFocus"
-		}]
-	},
-	"scripts": {
-		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
-		"compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
-	},
-	"devDependencies": {
-		"typescript": "^1.6.2",
-		"vscode": "0.10.x"
-	}
+        "commands": [
+            {
+                "command": "rot.13",
+                "title": "ROT 13",
+                "category": "ROT"
+            },
+            {
+                "command": "rot.47",
+                "title": "ROT 47",
+                "category": "ROT"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "rot.13",
+                "key": "alt+shift+r",
+                "mac": "alt+shift+r",
+                "when": "editorTextFocus"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+        "compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
+    },
+    "devDependencies": {
+        "typescript": "^1.6.2",
+        "vscode": "0.10.x"
+    }
 }
-
