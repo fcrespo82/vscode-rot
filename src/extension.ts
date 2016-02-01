@@ -42,13 +42,13 @@ export function activate(context: vscode.ExtensionContext) {
 export function deactivate() {
 }
 
-function rot13(text) {
+export function rot13(text) {
     return text.replace(/[a-zA-Z]/g, function(c) {
         return String.fromCharCode((c <= "Z" ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);
     });
 };
 
-function rot47(text) {
+export function rot47(text) {
     var s = [];
     for (var i = 0; i < text.length; i++) {
         var j = text.charCodeAt(i)
